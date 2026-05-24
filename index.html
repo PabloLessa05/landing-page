@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Siqueira Estratégia — Gestão de tráfego e produção de conteúdo para negócios locais em Nazareno e Sul de Minas." />
+  <title>Siqueira Estratégia | Conteúdo que gera procura</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:   #0A1628;
+      --navy-light: #112040;
+      --white:  #FFFFFF;
+      --green:  #2ECC71;
+      --green-dark: #27AE60;
+      --gray:   #F4F6F9;
+      --text-muted: #6B7A99;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(10,22,40,.10);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      text-decoration: none;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: var(--navy);
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(46,204,113,.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    /* Fade-in animation (triggered by JS) */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       HEADER / HERO
+    ============================================================ */
+    #hero {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 72px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle background glow */
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(46,204,113,.12) 0%, transparent 70%);
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(46,204,113,.15);
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(46,204,113,.3);
+    }
+
+    .hero-brand {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      letter-spacing: -.5px;
+    }
+
+    .hero-brand span {
+      color: var(--green);
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 36px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-cta-group .btn {
+      width: 100%;
+      max-width: 320px;
+      font-size: 1.05rem;
+    }
+
+    .hero-cta-note {
+      font-size: .8rem;
+      color: rgba(255,255,255,.45);
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #services {
+      background: var(--gray);
+      padding: 72px 0;
+    }
+
+    .section-label {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .services-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      transition: transform .22s, box-shadow .22s;
+      border-left: 4px solid var(--green);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(10,22,40,.13);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .service-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       SOCIAL PROOF
+    ============================================================ */
+    #proof {
+      background: var(--white);
+      padding: 72px 0;
+    }
+
+    .proof-headline {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 40px;
+      line-height: 1.3;
+    }
+
+    .proof-headline em {
+      color: var(--green-dark);
+      font-style: normal;
+    }
+
+    .testimonials {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      background: var(--gray);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-stars {
+      color: #F1C40F;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-text {
+      font-size: .92rem;
+      color: #3A4A6B;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Placeholder avatar circle */
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0A1628, #2ECC71);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+
+    .testimonial-info strong {
+      display: block;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .testimonial-info span {
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       CTA FINAL
+    ============================================================ */
+    #cta-final {
+      background: var(--navy);
+      color: var(--white);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-final::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(46,204,113,.08) 0%, transparent 70%);
+      bottom: -150px;
+      right: -200px;
+      pointer-events: none;
+    }
+
+    .cta-final-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .cta-final-sub {
+      font-size: .95rem;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 36px;
+    }
+
+    .cta-final-btn {
+      width: 100%;
+      max-width: 340px;
+      font-size: 1.05rem;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: #060D1A;
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 32px 20px 96px; /* extra bottom for floating button clearance */
+    }
+
+    .footer-brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .footer-location {
+      font-size: .82rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .85rem;
+      color: var(--green);
+      font-weight: 600;
+      transition: color .15s;
+    }
+
+    .footer-ig:hover {
+      color: var(--green-dark);
+    }
+
+    .footer-copy {
+      margin-top: 20px;
+      font-size: .75rem;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ============================================================
+       FLOATING WHATSAPP BUTTON (mobile)
+    ============================================================ */
+    .float-wa {
+      display: none; /* shown via media query */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: var(--green);
+      color: var(--navy);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 18px 20px;
+      text-align: center;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -4px 20px rgba(46,204,113,.4);
+      transition: background .18s;
+      text-decoration: none;
+    }
+
+    .float-wa:hover {
+      background: var(--green-dark);
+    }
+
+    /* WhatsApp SVG icon inside button */
+    .wa-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE FIRST
+       max-width: 480px is already the default above.
+       Larger screens get a bit more breathing room.
+    ============================================================ */
+    @media (max-width: 480px) {
+      .hero-brand  { font-size: 2rem; }
+      .section-title { font-size: 1.5rem; }
+      .cta-final-title { font-size: 1.45rem; }
+
+      /* Show floating WhatsApp button */
+      .float-wa { display: flex; }
+
+      /* Push footer content above the floating button */
+      #footer { padding-bottom: 80px; }
+    }
+
+    @media (min-width: 600px) {
+      .hero-brand { font-size: 3rem; }
+      .services-grid { flex-direction: row; flex-wrap: wrap; }
+      .service-card { flex: 1 1 calc(50% - 10px); }
+      .testimonials { flex-direction: row; }
+      .testimonial-card { flex: 1; }
+    }
+
+    @media (min-width: 900px) {
+      .services-grid { flex-wrap: nowrap; }
+      .service-card { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-badge fade-in">Nazareno &amp; Sul de Minas</p>
+
+      <h1 class="hero-brand fade-in">
+        Siqueira<br /><span>Estratégia</span>
+      </h1>
+
+      <p class="hero-tagline fade-in">Conteúdo que gera procura.</p>
+
+      <div class="hero-cta-group fade-in">
+        <!--
+          ATENÇÃO: substitua o número abaixo pelo WhatsApp da agência.
+          Formato: código do país + DDD + número, sem espaços ou traços.
+          Exemplo para Brasil: https://wa.me/5535999990000
+        -->
+        <a
+          class="btn btn-green"
+          href="https://wa.me/5532985208228"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Falar no WhatsApp com a Siqueira Estratégia"
+        >
+          <!-- WhatsApp icon SVG inline -->
+          <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.75-1.813A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3z" fill="#0A1628"/>
+            <path d="M21.5 18.75c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.41-1.49-.89-.8-1.49-1.79-1.67-2.09-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.09 3.19 5.06 4.47.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.19-.57-.34z" fill="#2ECC71"/>
+          </svg>
+          Falar no WhatsApp
+        </a>
+        <p class="hero-cta-note">Resposta rápida · Sem compromisso</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section id="services">
+    <div class="container">
+      <p class="section-label fade-in">O que fazemos</p>
+      <h2 class="section-title fade-in">Serviços para quem quer resultado real</h2>
+      <p class="section-subtitle fade-in">Trabalhamos com negócios locais que precisam aparecer para as pessoas certas, na hora certa.</p>
+
+      <div class="services-grid">
+
+        <div class="service-card fade-in">
+          <div class="service-icon">🎬</div>
+          <h3 class="service-title">Produção de Conteúdo</h3>
+          <p class="service-desc">Roteiro, captação e edição de vídeos pensados para gerar engajamento e atrair clientes para o seu negócio.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">📣</div>
+          <h3 class="service-title">Gestão de Tráfego</h3>
+          <p class="service-desc">Anúncios no Instagram, Facebook e Google que colocam a sua oferta na frente de quem realmente está pronto para comprar.</p>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-icon">📍</div>
+          <h3 class="service-title">Marketing Local</h3>
+          <p class="service-desc">Estratégia completa para negócios que vendem para a sua cidade ou região — sem desperdiçar verba com quem está longe.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOCIAL PROOF / TESTIMONIALS
+  ============================================================ -->
+  <section id="proof">
+    <div class="container">
+      <p class="section-label fade-in">Resultados</p>
+      <h2 class="proof-headline fade-in">
+        Negócios locais que publicam <em>com estratégia</em> vendem mais.
+      </h2>
+
+      <div class="testimonials">
+
+        <!-- Depoimento 1 — substituir por depoimento real -->
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Em dois meses de parceria, as mensagens no WhatsApp triplicaram. Antes eu postava todo dia e não tinha retorno nenhum. Agora o conteúdo trabalha por mim."
+          </p>
+          <div class="testimonial-author">
+            <!-- Substitua a inicial e os dados pelo depoimento real -->
+            <div class="testimonial-avatar" aria-hidden="true">A</div>
+            <div class="testimonial-info">
+              <strong>Ana Paula S.</strong>
+              <span>Salão de beleza · Nazareno, MG</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 2 — substituir por depoimento real -->
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Investia em impulsionamento e não via resultado. Com a gestão de tráfego da Siqueira Estratégia, meu restaurante começou a lotar nos fins de semana."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">R</div>
+            <div class="testimonial-info">
+              <strong>Ricardo M.</strong>
+              <span>Restaurante · Sul de Minas, MG</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA FINAL
+  ============================================================ -->
+  <section id="cta-final">
+    <div class="container">
+      <h2 class="cta-final-title fade-in">
+        Pronto para parar de<br />postar sem resultado?
+      </h2>
+      <p class="cta-final-sub fade-in">
+        Conversa rápida, sem compromisso. Vamos entender o seu negócio e mostrar o que é possível.
+      </p>
+      <a
+        class="btn btn-green cta-final-btn fade-in"
+        href="https://wa.me/5532985208228"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Entrar em contato com a Siqueira Estratégia pelo WhatsApp"
+      >
+        <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.75-1.813A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3z" fill="#0A1628"/>
+          <path d="M21.5 18.75c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.41-1.49-.89-.8-1.49-1.79-1.67-2.09-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.09 3.19 5.06 4.47.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.19-.57-.34z" fill="#2ECC71"/>
+        </svg>
+        Quero falar com a Siqueira Estratégia
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="footer">
+    <p class="footer-brand">Siqueira Estratégia</p>
+    <p class="footer-location">Nazareno &bull; Sul de Minas</p>
+    <a
+      class="footer-ig"
+      href="https://instagram.com/siqueiraestrategia"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Perfil do Instagram da Siqueira Estratégia"
+    >
+      <!-- Instagram icon inline SVG -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+      </svg>
+      @siqueiraestrategia
+    </a>
+    <p class="footer-copy">&copy; 2024 Siqueira Estratégia. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ============================================================
+       FLOATING WHATSAPP BUTTON (mobile only, CSS controls display)
+  ============================================================ -->
+  <a
+    class="float-wa"
+    href="https://wa.me/5532985208228"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Abrir WhatsApp da Siqueira Estratégia"
+  >
+    <svg class="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.75-1.813A12.94 12.94 0 0016 28c6.627 0 12-5.373 12-12S22.627 3 16 3z" fill="#0A1628"/>
+      <path d="M21.5 18.75c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.41-1.49-.89-.8-1.49-1.79-1.67-2.09-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.09 3.19 5.06 4.47.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.19-.57-.34z" fill="#2ECC71"/>
+    </svg>
+    Falar no WhatsApp
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT — Intersection Observer para fade-in
+  ============================================================ -->
+  <script>
+    (function () {
+      // Seleciona todos os elementos marcados para animar
+      var targets = document.querySelectorAll('.fade-in');
+
+      // Configura o observer com threshold de 15% de visibilidade
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              // Para de observar após animar (economiza recursos)
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      // Observa cada elemento
+      targets.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>
